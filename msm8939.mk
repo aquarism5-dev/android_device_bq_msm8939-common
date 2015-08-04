@@ -36,9 +36,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.adb.secure=0 \
-    ro.secure=0 \
-    ro.debuggable=1 \
     persist.sys.usb.config=adb
 
 # Audio
@@ -95,10 +92,17 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     memtrack.msm8916
 
+# Ebtables
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes \
+    libebtc
+
 # Filesystem
 PRODUCT_PACKAGES += \
     e2fsck \
-    make_ext4fs
+    make_ext4fs \
+    setup_fs
 
 # FM
 PRODUCT_PACKAGES += \
