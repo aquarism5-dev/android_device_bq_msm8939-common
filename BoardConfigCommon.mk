@@ -46,7 +46,6 @@ BOARD_CUSTOM_BOOTIMG_MK := $(VENDOR_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
-TARGET_USES_UNCOMPRESSED_KERNEL := true
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -62,7 +61,7 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # CMHW
-BOARD_HARDWARE_CLASS += $(VENDOR_PATH)/cmhw
+BOARD_HARDWARE_CLASS += $(VENDOR_PATH)/cmhw/src
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -104,11 +103,7 @@ BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.qcom
-TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
 TARGET_USERIMAGES_USE_EXT4 := true
-
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)
 
 # RIL
 TARGET_RIL_VARIANT := caf
@@ -131,9 +126,6 @@ BOARD_SEPOLICY_UNION += \
     surfaceflinger.te \
     system_server.te \
     system.te
-
-# Video
-TARGET_HAVE_SIGNED_VENUS_FW := true
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file

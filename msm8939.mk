@@ -101,8 +101,7 @@ PRODUCT_PACKAGES += \
 # Filesystem
 PRODUCT_PACKAGES += \
     e2fsck \
-    make_ext4fs \
-    setup_fs
+    make_ext4fs
 
 # FM
 PRODUCT_PACKAGES += \
@@ -151,21 +150,13 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.crda.sh \
     init.qcom.bt.sh \
-    init.qcom.coex.sh
 
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.qcom.rc \
-    init.qcom.power.rc \
     init.qcom.usb.rc \
-    init.recovery.qcom.rc \
     ueventd.qcom.rc
-
-# Recovery
-PRODUCT_PACKAGES += \
-    librecovery_updater_cm
 
 # RIL
 PRODUCT_PACKAGES += \
