@@ -68,11 +68,6 @@ on fs
     mount_all fstab.qcom
     restorecon_recursive /persist
     setprop ro.crypto.fuse_sdcard true
-    
-    # Enable zRAM
-    on property:ro.config.zram=true
-    swapon_all fstab.qcom
-    write /proc/sys/vm/swappiness 100
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
@@ -383,15 +378,6 @@ service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     group root
     oneshot
     disabled
-  
-service config-zram /system/bin/sh /system/etc/init.qcom.zram.sh
-   class late_start
-   user root
-   disabled
-   oneshot
-   
-on property:sys.boot_completed=1
-    start config-zram
 
 service_redefine ril-daemon /system/bin/rild
     class main
