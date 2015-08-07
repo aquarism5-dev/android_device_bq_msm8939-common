@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2014 The Android Open Source Project
-
+<!-- Copyright (C) 2007 The Android Open Source Project
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-
           http://www.apache.org/licenses/LICENSE-2.0
-
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,13 +11,14 @@
      limitations under the License.
 -->
 
-<!-- Telecomm resources that may need to be customized for different hardware or product
-    builds. -->
-<resources>
-    <!-- Flag indicating if the tty is enabled -->
-    <bool name="tty_enabled">true</bool>
-    
-    <!-- Flag indicating if the speed up audio on mt call code should be executed -->
-    <bool name="config_speed_up_audio_on_mt_calls">true</bool>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- This is used to determine whether to hide the
+         preferred application install location settings-->
+    <bool name="config_hide_app_install_location" translatable="false">false</bool>
+
+    <!-- Using this on MSIM devices leads to weird states that break telephony's
+    internal state machine. All MSIM devices should probably set this to "true"-->
+    <bool name="config_disablePreferredNetworkSwitch" translatable="false">true</bool>
 
 </resources>
