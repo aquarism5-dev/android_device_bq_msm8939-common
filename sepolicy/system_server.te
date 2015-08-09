@@ -1,2 +1,5 @@
 # CmHardwareService access to Color Calibration
 allow system_server display_sysfs:file rw_file_perms;
+
+# WifiStateMachine to access wpa_wlan0 socket
+allow system_server init:unix_dgram_socket sendto;
