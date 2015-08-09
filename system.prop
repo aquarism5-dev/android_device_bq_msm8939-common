@@ -16,6 +16,7 @@ voice.playback.conc.disabled=true
 voice.record.conc.disabled=true
 voice.voip.conc.disabled=true
 persist.sys.fm=qn8035
+audio.dolby.ds2.enabled=true
 
 # Media
 media.stagefright.enable-player=true
@@ -53,10 +54,11 @@ debug.enable.sglscale=1
 ro.sf.lcd_density=480
 
 # GPS
-persist.gps.qc_nlp_in_use=0
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
 ro.gps.agps_provider=1
-ro.qc.sdk.izat.premium.enabled=0
-ro.qc.sdk.izat.service_mask=0x0
+ro.qc.sdk.izat.premium.enabled=1
+ro.qc.sdk.izat.service_mask=0x5
 
 # NITZ
 persist.rild.nitz_plmn=
@@ -76,8 +78,6 @@ persist.sys.isUsbOtgEnabled=1
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 ril.subscription.types=NV,RUIM
-ro.use_data_netmgrd=true
-persist.data.netmgrd.qos.enable=true
 telephony.lteOnCdmaDevice=1
 persist.radio.rat_on=disable
 persist.radio.apm_sim_not_pwdn=1

@@ -33,7 +33,7 @@ on early-init
     write /sys/block/mmcblk0/bdi/read_ahead_kb 512
 
 on init
-    # Set permissions for persist partition
+    # Set permissions for persist and firmware partitions
     mkdir /persist 0771 system system
     mkdir /firmware 0771 system system
 
@@ -100,6 +100,9 @@ on boot
     chmod 2770 /dev/socket/qmux_gps
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
+
+    # For bridgemgr daemon to inform the USB driver of the correct transport
+    chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
 
     # Prevents permission denied error for telephony
     chmod 0644 /proc/cmdline
@@ -379,13 +382,6 @@ service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     oneshot
     disabled
 
-service_redefine ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio log qcom_diag
-
 service ril-daemon2 /system/bin/rild -c 2
     class main
     socket rild2 stream 660 root radio
@@ -393,9 +389,14 @@ service ril-daemon2 /system/bin/rild -c 2
     user root
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
-    
-on property:persist.radio.multisim.config=dsds
-    start ril-daemon2
+
+service ril-daemon3 /system/bin/rild -c 3
+    class main
+    socket rild3 stream 660 root radio
+    socket rild-debug3 stream 660 radio system
+    user root
+    disabled
+    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
 
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
