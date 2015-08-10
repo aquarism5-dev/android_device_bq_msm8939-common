@@ -41,7 +41,9 @@
 /dev/smd5                 0660   system     system
 /dev/smd6                 0660   system     system
 /dev/smd7                 0660   bluetooth  bluetooth
+/dev/smd8                 0660   system     system
 /dev/ccid_bridge          0660   system     system
+/dev/rmnet_ctrl           0660   usb        usb
 /dev/ipa                  0660   net_admin  net_admin
 /dev/wwan_ioctl           0660   net_admin  net_admin
 /dev/ipaNatTable          0660   net_admin  net_admin
@@ -158,7 +160,7 @@
 /dev/sdio_tty_ciq_00      0660   system     system
 /dev/tty_sdio_00          0660   system     system
 /dev/ttyGS0               0660   system     system
-/dev/i2c-5                0660   media       media
+/dev/i2c-5                0660   media      media
 /dev/voice_svc            0660   system     audio
 
 # DVB devices
