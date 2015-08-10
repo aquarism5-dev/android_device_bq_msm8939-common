@@ -153,26 +153,14 @@ set_speaker_light_locked(struct light_device_t *dev,
 
     colorRGB = state->color;
 
+#if 0
     ALOGV("set_speaker_light_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
             state->flashMode, colorRGB, onMS, offMS);
+#endif
 
     red = (colorRGB >> 16) & 0xFF;
     green = (colorRGB >> 8) & 0xFF;
     blue = colorRGB & 0xFF;
-
-    if (onMS > 0 && offMS > 0 && !(
-          (red == green && green == blue) ||
-          (red == green && blue == 0) ||
-          (red == blue && green == 0) ||
-          (green == blue && red == 0) ||
-          (blue == 0 && red == 0) ||
-          (green == 0 && red == 0) ||
-          (green == 0 && blue == 0)
-        )) {
-        // Blinking only works if all active component colors have
-        // the same brightness value
-        offMS = 0;
-    }
 
     if (onMS > 0 && offMS > 0) {
         blink = 1;
@@ -180,12 +168,18 @@ set_speaker_light_locked(struct light_device_t *dev,
         blink = 0;
     }
 
-    // Power rails are in a workqueue, give the kernel time to bring them
-    // up before starting the blinks, or those'll be lost
-    usleep(500*1000);
-    if (red) write_int(RED_BLINK_FILE, blink);
-    if (green) write_int(GREEN_BLINK_FILE, blink);
-    if (blue) write_int(BLUE_BLINK_FILE, blink);
+    write_int(RED_LED_FILE, red);
+    write_int(GREEN_LED_FILE, green);
+    write_int(BLUE_LED_FILE, blue);
+
+    if (blink) {
+        if (red)
+            write_int(RED_BLINK_FILE, blink);
+        if (green)
+            write_int(GREEN_BLINK_FILE, blink);
+        if (blue)
+            write_int(BLUE_BLINK_FILE, blink);
+    }
 
     return 0;
 }
