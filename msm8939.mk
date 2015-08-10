@@ -219,12 +219,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb
 
-# Data configuration files
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/data/dsi_config.xml:system/etc/data/dsi_config.xml \
-    $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
-    $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
-
 # WiFi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
@@ -254,8 +248,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
     wlan.driver.ath=0 \
-    ro.use_data_netmgrd=true \
-    persist.data.netmgrd.qos.enable=true \
     ro.data.large_tcp_window_size=true
 
 # WiFi Display
