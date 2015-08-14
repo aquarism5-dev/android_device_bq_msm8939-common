@@ -113,14 +113,6 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
 
-# RIL
-TARGET_RIL_VARIANT := caf
-SIM_COUNT := 2
-TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM -DUSE_RIL_VERSION_10
-TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM -DUSE_RIL_VERSION_10
-# Added to indicate that protobuf-c is supported in this build
-PROTOBUF_SUPPORTED := true
-
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
