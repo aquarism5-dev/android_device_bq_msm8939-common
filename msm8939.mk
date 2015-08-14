@@ -217,6 +217,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
 
+# Rmnet
+PRODUCT_PACKAGES += \
+    librmnetctl \
+    rmnetcli \
+    sockev
+
 # WiFi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
