@@ -117,8 +117,7 @@ BOARD_USES_QCOM_HARDWARE := true
 TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
 
-# RIL
-TARGET_RIL_VARIANT := caf
+# Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
 
 # SELinux

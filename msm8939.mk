@@ -98,10 +98,10 @@ ifeq ($(BOARD_USES_QCNE),true)
 PRODUCT_PACKAGES += \
     services-ext \
     init.cne.rc
+endif
 
 PRODUCT_PROPERTY_OVERRIDES +=
-    persist.cne.feature=4
-endif
+    persist.cne.feature=1
 
 # CRDA
 PRODUCT_PACKAGES += \

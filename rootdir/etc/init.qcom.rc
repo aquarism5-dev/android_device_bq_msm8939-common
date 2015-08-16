@@ -228,9 +228,9 @@ on property:ro.boot.emmc=true
     start rmt_storage
 
 service rfs_access /system/bin/rfs_access
-   class core
-   user root
-   group system net_raw
+    class core
+    user root
+    group system net_raw
 
 on property:ro.boot.emmc=true
     start rfs_access
