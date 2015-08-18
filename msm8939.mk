@@ -100,9 +100,6 @@ PRODUCT_PACKAGES += \
     init.cne.rc
 endif
 
-PRODUCT_PROPERTY_OVERRIDES +=
-    persist.cne.feature=1
-
 # CRDA
 PRODUCT_PACKAGES += \
     crda \

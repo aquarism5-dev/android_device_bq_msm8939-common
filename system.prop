@@ -79,6 +79,7 @@ rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 ril.subscription.types=NV,RUIM
 telephony.lteOnCdmaDevice=1
+ro.telephony.default_network=5
 ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 persist.radio.rat_on=combine
@@ -97,6 +98,9 @@ ro.sys.fw.empty_app_percent=50
 ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=1073741824
+
+# CNE
+persist.cne.feature=1
 
 # Time
 persist.timed.enable=true
