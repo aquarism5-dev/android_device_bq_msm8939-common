@@ -139,7 +139,6 @@ BOARD_SEPOLICY_UNION += \
     healthd.te \
     property_contexts \
     qseecomd.te \
-    rild.te \
     surfaceflinger.te \
     system_server.te \
     system.te
