@@ -94,12 +94,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
 
-ifeq ($(BOARD_USES_QCNE),true)
-PRODUCT_PACKAGES += \
-    services-ext \
-    init.cne.rc
-endif
-
 # CRDA
 PRODUCT_PACKAGES += \
     crda \
@@ -187,6 +181,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     fstab.qcom \
+    init.cne.rc \
     init.qcom.rc \
     ueventd.qcom.rc
 

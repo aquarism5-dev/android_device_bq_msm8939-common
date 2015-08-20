@@ -334,7 +334,7 @@ static struct hw_module_methods_t lights_module_methods = {
 };
 
 /*
- * The lights Module
+ * The Lights Module
  */
 struct hw_module_t HAL_MODULE_INFO_SYM = {
     .tag = HARDWARE_MODULE_TAG,

@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+FORCE_32_BIT := true
+
 VENDOR_PATH := device/bq/msm8939-common
 
 TARGET_SPECIFIC_HEADER_PATH := $(VENDOR_PATH)/include
@@ -40,7 +42,7 @@ TARGET_CPU_VARIANT := cortex-a53
 TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
@@ -78,12 +80,15 @@ TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 
+# DPM NSRM Feature
+TARGET_LDPRELOAD := libNimsWrap.so
+
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
 AUDIO_FEATURE_ENABLED_FM := true
 
 # GPS
-TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
+TARGET_GPS_HAL_PATH := $(VENDOR_PATH)/gps
 TARGET_NO_RPC := true
 
 # Fonts
@@ -104,9 +109,7 @@ TARGET_POWERHAL_VARIANT := qcom
 
 # Qualcomm support
 BOARD_USES_QC_TIME_SERVICES := true
-ifneq ($(QCPATH),)
 BOARD_USES_QCNE := true
-endif
 BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
@@ -136,6 +139,7 @@ BOARD_SEPOLICY_UNION += \
     healthd.te \
     property_contexts \
     qseecomd.te \
+    rild.te \
     surfaceflinger.te \
     system_server.te \
     system.te
