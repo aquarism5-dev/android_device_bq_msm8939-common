@@ -176,7 +176,6 @@ PRODUCT_PACKAGES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    init.class_main.sh \
     init.qcom.bt.sh
 
 PRODUCT_PACKAGES += \
@@ -217,7 +216,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
 
-# Rmnet
+# Dataservices
 PRODUCT_PACKAGES += \
     librmnetctl \
     rmnetcli \
