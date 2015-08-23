@@ -89,7 +89,7 @@ $(MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(MODEM_SYMLINKS)
 
-# PlayReady
+# Playready
 PLAYREADY_IMAGES := \
     playread.b00 playread.b01 playread.b02 playread.b03 playread.mdt
 
@@ -116,8 +116,21 @@ $(WCNSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_SYMLINKS)
 
+# Widevine
+WV_IMAGES := \
+    widevine.b00 widevine.b01 widevine.b02 widevine.b03 widevine.mdt
+
+WV_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(WV_IMAGES)))
+$(WV_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Widevine firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(WV_SYMLINKS)
+
 # Create a link for the WCNSS config file, which ends up as a writable
-# version in /system/etc/wifi
+# version in /data/misc/wifi
 $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wlan/prima; \
     ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
 	    $(TARGET_OUT)/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini)

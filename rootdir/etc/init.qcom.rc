@@ -287,6 +287,10 @@ service qmuxd /system/bin/qmuxd
 
 service netmgrd /system/bin/netmgrd
     class main
+
+on property:ro.use_data_netmgrd=false
+    # netmgr not supported on specific target
+    stop netmgrd
     
 service sensord /system/bin/sensord
     class main
@@ -393,7 +397,7 @@ service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
     oneshot
    
 service loc_launcher /system/bin/loc_launcher
-    #loc_launcher will start as root and set its uid to gps
+    # loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet net_raw qcom_diag net_admin wifi
 
