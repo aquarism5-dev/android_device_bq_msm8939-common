@@ -80,10 +80,6 @@ TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
 
-# Flags
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
-COMMON_GLOBAL_CPPFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
-
 # DPM NSRM Feature
 TARGET_LDPRELOAD := libNimsWrap.so
 
@@ -122,6 +118,10 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 # RIL
 TARGET_RIL_VARIANT := caf
+SIM_COUNT := 2
+TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM -DUSE_RIL_VERSION_10
+TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM -DUSE_RIL_VERSION_10
+# Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
 
 # SELinux
@@ -136,11 +136,15 @@ BOARD_SEPOLICY_UNION += \
     file.te \
     file_contexts \
     healthd.te \
+    netmgrd.te \
+    perfd.te \
     property_contexts \
+    qmuxd.te \
     qseecomd.te \
+    radio.te \
     surfaceflinger.te \
-    system_server.te \
-    system.te
+    system.te \
+    system_server.te
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file

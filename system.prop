@@ -85,8 +85,9 @@ rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 ril.subscription.types=NV,RUIM
 telephony.lteOnCdmaDevice=1
-ro.telephony.default_network=5
+ro.telephony.default_network=9
 ro.use_data_netmgrd=true
+ro.ril.multi_rat_capable=true
 persist.data.netmgrd.qos.enable=true
 persist.radio.rat_on=combine
 persist.radio.apm_sim_not_pwdn=1
@@ -103,13 +104,14 @@ ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=1073741824
 
-# Time
+# Qualcomm
+ro.qualcomm.cabl=2
 persist.timed.enable=true
+ro.vendor.extension_library=libqti-perfd-client.so
 
 # Perf
 ro.min_freq_0=960000
 ro.min_freq_4=800000
-ro.vendor.extension_library=libqti-perfd-client.so
 
 # USB
 ro.sys.usb.default.config=diag,serial_smd,serial_tty,mass_storage,adb
