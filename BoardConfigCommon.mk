@@ -118,10 +118,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 # RIL
 TARGET_RIL_VARIANT := caf
-SIM_COUNT := 2
-TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM -DUSE_RIL_VERSION_10
-TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM -DUSE_RIL_VERSION_10
-# Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
 
 # SELinux
@@ -136,12 +132,9 @@ BOARD_SEPOLICY_UNION += \
     file.te \
     file_contexts \
     healthd.te \
-    netmgrd.te \
     perfd.te \
     property_contexts \
-    qmuxd.te \
     qseecomd.te \
-    radio.te \
     surfaceflinger.te \
     system.te \
     system_server.te
