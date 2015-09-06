@@ -82,8 +82,6 @@ persist.sys.isUsbOtgEnabled=1
 
 # Radio
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
-rild.libargs=-d /dev/smd0
-ril.subscription.types=NV,RUIM
 telephony.lteOnCdmaDevice=1
 ro.telephony.default_network=9
 ro.use_data_netmgrd=true

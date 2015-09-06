@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <!--
      DSI Module configuration XML file
      Copyright (c) 2013 Qualcomm Technologies, Inc.  All Rights Reserved.
      Qualcomm Technologies Proprietary and Confidential.
 -->
 
-<!-- DSI configuration -->
+<?xml version="1.0" encoding="UTF-8"?>
 <list name="dsi_config">
-
-   <!-- Fusion4.5 (PCIe) parameters -->
+   <!-- Configuration for fusion4.5 PCIe -->
    <listitem name="fusion4_5_pcie">
 
      <data name="qos_enabled" type="int"> 0 </data>
@@ -142,5 +139,5 @@
        <data type="string"> rmnet0 </data>
      </list>
    </listitem>
-
 </list>
+
