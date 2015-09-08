@@ -208,9 +208,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Qualcomm
 PRODUCT_PACKAGES += \
-    dsi_config \
-    netmgr_config \
-    qmi_config
+    dsi_config.xml \
+    netmgr_config.xml \
+    qmi_config.xml
 
 # WiFi
 PRODUCT_PACKAGES += \
