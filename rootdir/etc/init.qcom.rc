@@ -172,6 +172,18 @@ on post-fs-data
     chmod 2755 /data/misc/perfd
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
+
+    # NFC local data and nfcee xml storage
+    mkdir /data/nfc 0770 nfc nfc
+    mkdir /data/nfc/param 0770 nfc nfc
+    chmod 0700 /data/nfc
+    chmod 0700 /data/nfc/param
+    chown nfc nfc /data/nfc
+    chown nfc nfc /data/nfc/param
+    restorecon_recursive /data/nfc
+
+    chown root root /system/bin/init.atmel_ts.sh
+    chmod 777 /system/bin/init.atmel_ts.sh
     
     # Create directory used by display clients
     mkdir /data/misc/display 0770 system graphics
@@ -207,12 +219,13 @@ on post-fs-data
     chown system system /proc/ctp_if_upgrade_version
     chown system system /proc/ctp_if_upgrade_old_version
 	
-    # For gesture_open
-    chown system system /proc/gesture_open
-    
     # Color calibration control
     chown system system /sys/devices/virtual/graphics/fb0/rgb
     chmod 0660 /sys/devices/virtual/graphics/fb0/rgb
+
+    # Tap To Wake
+    chown root system /sys/devices/soc.0/78b9000.i2c/i2c-5/5-004a/en_gesture
+    chmod 0660 /sys/devices/soc.0/78b9000.i2c/i2c-5/5-004a/en_gesture
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed"
@@ -287,10 +300,6 @@ service qmuxd /system/bin/qmuxd
 
 service netmgrd /system/bin/netmgrd
     class main
-
-on property:ro.use_data_netmgrd=false
-    # netmgr not supported on specific target
-    stop netmgrd
     
 service sensord /system/bin/sensord
     class main
@@ -408,20 +417,23 @@ service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
     oneshot
     disabled
 
+service_redefine ril-daemon /system/bin/rild
+    class main
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio log qcom_diag
+
 service ril-daemon2 /system/bin/rild -c 2
     class main
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user root
-    group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
-
-service ril-daemon3 /system/bin/rild -c 3
-    class main
-    socket rild3 stream 660 root radio
-    socket rild-debug3 stream 660 radio system
-    user root
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw diag qcom_diag log
+
+on property:persist.radio.multisim.config=dsds
+    start ril-daemon2
 
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start

@@ -55,7 +55,6 @@ debug.mdpcomp.idletime=600
 persist.hwc.mdpcomp.enable=true
 persist.hwc.ptor.enable=true
 ro.opengles.version=196608
-ro.qualcomm.cabl=2
 debug.enable.sglscale=1
 ro.sf.lcd_density=480
 
@@ -83,16 +82,16 @@ persist.sys.isUsbOtgEnabled=1
 # Radio
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
+ril.subscription.types=NV,RUIM
 telephony.lteOnCdmaDevice=1
-ro.telephony.default_network=9
 ro.use_data_netmgrd=true
 ro.ril.multi_rat_capable=true
 persist.data.netmgrd.qos.enable=true
+persist.env.spec=Default
 persist.radio.rat_on=combine
 persist.radio.apm_sim_not_pwdn=1
+persist.radio.mode_pref_nv10=0
 persist.radio.multisim.config=dsds
-persist.env.spec=Default
-persist.data.target=dpm1
 persist.radio.no_cons_man_roam=1
 persist.radio.proc_nw_scan=1
 

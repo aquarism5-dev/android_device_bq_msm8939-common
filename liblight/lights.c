@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
  * Copyright (C) 2014 The  Linux Foundation. All rights reserved.
- * Copyright (C) 2014-2015 The CyanogenMod Project
+ * Copyright (C) 2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ char const *const BLUE_LED_FILE
 char const *const BLUE_BLINK_FILE
         = "/sys/class/leds/blue/blink";
 
-/**
+/*
  * device methods
  */
 
@@ -204,6 +204,10 @@ set_light_backlight(struct light_device_t *dev,
     int err = 0;
     int brightness = rgb_to_brightness(state);
 
+    if (!dev) {
+        return -1;
+    }
+
     pthread_mutex_lock(&g_lock);
 
     err = write_int(LCD_FILE, brightness);
@@ -219,6 +223,10 @@ set_light_buttons(struct light_device_t *dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
+
+    if (!dev) {
+        return -1;
+    }
 
     pthread_mutex_lock(&g_lock);
 
@@ -317,6 +325,10 @@ static int open_lights(const struct hw_module_t *module, const char *name,
     pthread_once(&g_init, init_globals);
 
     struct light_device_t *dev = malloc(sizeof(struct light_device_t));
+
+    if(!dev)
+        return -ENOMEM;
+
     memset(dev, 0, sizeof(*dev));
 
     dev->common.tag = HARDWARE_DEVICE_TAG;
@@ -330,7 +342,7 @@ static int open_lights(const struct hw_module_t *module, const char *name,
 }
 
 static struct hw_module_methods_t lights_module_methods = {
-    .open =  open_lights,
+    .open = open_lights,
 };
 
 /*

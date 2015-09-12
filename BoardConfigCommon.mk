@@ -13,17 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FORCE_32_BIT := true
-
-VENDOR_PATH := device/bq/msm8939-common
-
-TARGET_SPECIFIC_HEADER_PATH := $(VENDOR_PATH)/include
+COMMON_PATH := device/bq/msm8939-common
 
 TARGET_BQ_COMMON := msm8939
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8916
@@ -38,7 +35,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
 
 # Properties
-TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
+TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
@@ -47,7 +44,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_RAMDISK_OFFSET     := 0x01000000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_CUSTOM_BOOTIMG_MK := $(VENDOR_PATH)/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/mkbootimg.mk
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-smd"
@@ -64,7 +61,7 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # CMHW
-BOARD_HARDWARE_CLASS += $(VENDOR_PATH)/cmhw/src
+BOARD_HARDWARE_CLASS += $(COMMON_PATH)/cmhw/src
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -87,7 +84,7 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 AUDIO_FEATURE_ENABLED_FM := true
 
 # GPS
-TARGET_GPS_HAL_PATH := $(VENDOR_PATH)/gps
+TARGET_GPS_HAL_PATH := $(COMMON_PATH)/gps
 TARGET_NO_RPC := true
 
 # Fonts
@@ -112,7 +109,7 @@ BOARD_USES_QCNE := true
 BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # RIL
